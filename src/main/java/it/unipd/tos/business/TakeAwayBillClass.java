@@ -17,7 +17,8 @@ public class TakeAwayBillClass implements TakeAwayBill{
 
     public double getOrderPrice(List<MenuItem> itemsOrdered) 
             throws TakeAwayBillException {
-        double total = 0;
+        double total = 0d;
+        double countPaniniFritti = 0d;
         int sandwhich = 0;
         double leastExpensive = Double.MAX_VALUE;
         
@@ -29,6 +30,12 @@ public class TakeAwayBillClass implements TakeAwayBill{
                 if(price < leastExpensive){
                     leastExpensive = price;
                 }
+                
+            }
+            
+            if(item.getItemtype().equals(ItemType.Fritti) ||
+                    item.getItemtype().equals(ItemType.Panini)){
+                countPaniniFritti += item.getPrice();
             }
             
             total += price;
@@ -36,6 +43,10 @@ public class TakeAwayBillClass implements TakeAwayBill{
         
         if(sandwhich > 5){
             total -= (leastExpensive / 2);
+        }
+        
+        if(countPaniniFritti > 50){
+            total *= 0.9;
         }
         
         return total;

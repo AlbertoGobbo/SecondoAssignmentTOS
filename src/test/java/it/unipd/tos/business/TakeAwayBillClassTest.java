@@ -48,6 +48,21 @@ public class TakeAwayBillClassTest {
             fail(exception.getMessage());
         }
         
+    }
+    
+    @Test
+    public void testGetSaleSandwhichAndFried(){
+        List<MenuItem> ItemOrderedList = new ArrayList<MenuItem>();
+        for(int i=0; i<3; i++){
+            ItemOrderedList.add(new MenuItem(ItemType.Panini,"Hot dog", 6d));
+            ItemOrderedList.add(new MenuItem(ItemType.Fritti,"Frittura mista", 12d));
+        }
+        
+        try{
+            assertEquals(48.6d,takeAwayBill.getOrderPrice(ItemOrderedList),0);
+        }catch(TakeAwayBillException exception){
+            fail(exception.getMessage());
+        }
         
     }
 
