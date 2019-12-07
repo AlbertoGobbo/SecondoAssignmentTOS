@@ -74,5 +74,29 @@ public class TakeAwayBillClassTest {
         }
         takeAwayBill.getOrderPrice(ItemOrderedList);
     }
+    
+    @Test
+    public void testControlPrice(){
+        List<MenuItem> ItemOrderedList = new ArrayList<MenuItem>();
+        for(int i=0; i<2; i++){
+            ItemOrderedList.add(new MenuItem(ItemType.Panini,"Hot Dog",3.5d));
+        }
+        
+        try{
+            assertEquals(7.5d,takeAwayBill.getOrderPrice(ItemOrderedList),0);
+        }catch(TakeAwayBillException exception){
+            fail(exception.getMessagge());
+        }
+    }
+    
+    @Test
+    public void testControlPriceIf0(){
+        List<MenuItem> ItemOrderedList = new ArrayList<MenuItem>();
+        try{
+            assertEquals(0,takeAwayBill.getOrderPrice(ItemOrderedList),0);
+        }catch(TakeAwayBillException exception){
+            fail(exception.getMessagge());
+        }
+    }
 
 }

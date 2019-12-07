@@ -27,15 +27,14 @@ public class TakeAwayBillClass implements TakeAwayBill{
             double price = item.getPrice();
             if(item.getItemtype().equals(ItemType.Panini)){
                 sandwhich++;
-                
+                countPaniniFritti += item.getPrice();
                 if(price < leastExpensive){
                     leastExpensive = price;
                 }
                 
             }
             
-            if(item.getItemtype().equals(ItemType.Fritti) ||
-                    item.getItemtype().equals(ItemType.Panini)){
+            if(item.getItemtype().equals(ItemType.Fritti)){
                 countPaniniFritti += item.getPrice();
             }
             
@@ -50,6 +49,10 @@ public class TakeAwayBillClass implements TakeAwayBill{
         
         if(countPaniniFritti > 50){
             total *= 0.9;
+        }
+        
+        if(total > 0 && total < 10){
+            total += 0.5;
         }
         
         return total;
