@@ -7,10 +7,6 @@ public class MenuItem {
     private ItemType itemtype;
     private String name;
     private Double price;
-    
-    public MenuItem(){
-        super();
-    }
 
     public MenuItem(ItemType itemtype, String name, Double price) {
         super();
