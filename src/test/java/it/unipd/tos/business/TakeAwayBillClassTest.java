@@ -65,5 +65,14 @@ public class TakeAwayBillClassTest {
         }
         
     }
+    
+    @Test(expected = TakeAwayBillException.class)
+    public void testSizeOver30() throws TakeAwayBillException{
+        List<MenuItem> ItemOrderedList = new ArrayList<MenuItem>();
+        for(int i=0; i<32; i++){
+            ItemOrderedList.add(new MenuItem(ItemType.Bevande,"Coca Cola",3.5d));
+        }
+        takeAwayBill.getOrderPrice(ItemOrderedList);
+    }
 
 }

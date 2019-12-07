@@ -10,17 +10,18 @@ import it.unipd.tos.model.ItemType;
 import it.unipd.tos.model.MenuItem;
 
 public class TakeAwayBillClass implements TakeAwayBill{
-    
-    public TakeAwayBillClass() {
-        // TODO Auto-generated constructor stub
-    }
 
     public double getOrderPrice(List<MenuItem> itemsOrdered) 
             throws TakeAwayBillException {
         double total = 0d;
         double countPaniniFritti = 0d;
         int sandwhich = 0;
+        int totalOrders = 0;
         double leastExpensive = Double.MAX_VALUE;
+        
+        if(itemsOrdered.size()>30){
+            throw new TakeAwayBillException("Limite massimo raggiunto");
+        }
         
         for(MenuItem item : itemsOrdered){
             double price = item.getPrice();
@@ -39,6 +40,8 @@ public class TakeAwayBillClass implements TakeAwayBill{
             }
             
             total += price;
+            
+            totalOrders++;
         }
         
         if(sandwhich > 5){
