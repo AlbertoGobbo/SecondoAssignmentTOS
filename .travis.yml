@@ -1,15 +1,18 @@
+os:linux
+
 dist: trusty
 
 group: edge
 
 language: java
 
-sudo: required
-
 jdk: openjdk8
 
+after_success:
+    - mvn jacoco:report coveralls:report
+
 cache:
-    directories:
+     directories:
         - $HOME/.m2
     
 script:
